@@ -1,31 +1,18 @@
-import cv2
-import numpy as np
+from sklearn.cluster import DBSCAN
 
-def get_chessboard_corners(gray, chessboard_size=(7, 7)):
-    ret, corners = cv2.findChessboardCorners(gray, chessboard_size, None)
-    return ret, corners
-
-def apply_perspective_transform(frame, corners):
+def segment_chessboard_dbscan(corners):
+    """ Używa DBSCAN do grupowania narożników w 64 pola szachownicy """
     corners = corners.reshape(-1, 2)
-    src_pts = np.float32([corners[0], corners[6], corners[-1], corners[-7]])
-    dst_pts = np.float32([[0, 0], [300, 0], [300, 300], [0, 300]])
-    
-    M = cv2.getPerspectiveTransform(src_pts, dst_pts)
-    return cv2.warpPerspective(frame, M, (300, 300))
+    clustering = DBSCAN(eps=15, min_samples=2).fit(corners)
+    labels = clustering.labels_
 
-def split_chessboard_into_squares(warped):
-    square_size = 300 // 8
+    unique_labels = set(labels)
     squares = []
-    for row in range(8):
-        for col in range(8):
-            x_start, y_start = col * square_size, row * square_size
-            x_end, y_end = x_start + square_size, y_start + square_size
-            square = warped[y_start:y_end, x_start:x_end]
-            squares.append((row, col, square))
-            cv2.rectangle(warped, (x_start, y_start), (x_end, y_end), (255, 0, 0), 1)
-    return warped, squares
+    for label in unique_labels:
+        if label == -1:  # Ignorujemy outliery
+            continue
+        points = corners[labels == label]
+        x, y = np.mean(points, axis=0)
+        squares.append((int(x), int(y)))
 
-def convert_position_to_algebraic(row, col):
-    files = "abcdefgh"
-    ranks = "87654321"
-    return f"{files[col]}{ranks[row]}"
+    return squares
