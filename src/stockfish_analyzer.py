@@ -1,6 +1,6 @@
 from stockfish import Stockfish
 
-stockfish = Stockfish("path/to/stockfish.exe")
+stockfish = Stockfish("path/to/stockfish.exe") # dodać ścieżkę
 
 def analyze_position(fen):
     """ Analizuje pozycję i podaje najlepszy ruch """

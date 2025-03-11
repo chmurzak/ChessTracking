@@ -1,4 +1,5 @@
 from sklearn.cluster import DBSCAN
+import numpy as np
 
 def segment_chessboard_dbscan(corners):
     """ Używa DBSCAN do grupowania narożników w 64 pola szachownicy """

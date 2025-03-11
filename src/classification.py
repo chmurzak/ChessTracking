@@ -1,5 +1,6 @@
 import torch
 import cv2
+import numpy as np
 
 model = torch.hub.load('ultralytics/yolov5', 'custom', path='models/yolo_chess.pt')
 
@@ -11,10 +12,6 @@ def detect_pieces_yolo(frame):
     for *xyxy, conf, cls in results.xyxy[0]:  # Pobranie danych detekcji
         x1, y1, x2, y2 = map(int, xyxy)
         piece = model.names[int(cls)]  # Pobranie nazwy figury
-        detected_pieces.append((piece, (x1, y1, x2, y2)))
-
-        # Rysowanie bounding boxów na obrazie
-        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-        cv2.putText(frame, piece, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        detected_pieces.append({"id": None, "bbox": (x1, y1, x2, y2), "piece": piece})
 
     return frame, detected_pieces
