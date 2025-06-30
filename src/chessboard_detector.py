@@ -1,48 +1,40 @@
-import cv2
+from ultralytics import YOLO
 import numpy as np
-import chess.pgn
-import chess
-from utils import apply_perspective_transform, split_chessboard_into_squares, convert_position_to_algebraic
+import cv2
+import os
 
-def detect_chessboard(frame):
-    """ Wykrywa szachownicę w obrazie, zwracając narożniki oraz przekształcony obraz """
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+model = YOLO("models/best_corner_model.pt")
 
-    # Detekcja narożników metodą Harris Corner Detection
-    dst = cv2.cornerHarris(gray, 2, 3, 0.04)
-    dst = cv2.dilate(dst, None)
-    frame[dst > 0.01 * dst.max()] = [0, 0, 255]  # Zaznacz narożniki na czerwono
+def complete_rectangle(points):
+    if len(points) != 3:
+        return points
+    a, b, c = points
+    dists = [
+        np.linalg.norm(a - b) + np.linalg.norm(a - c),
+        np.linalg.norm(b - a) + np.linalg.norm(b - c),
+        np.linalg.norm(c - a) + np.linalg.norm(c - b)
+    ]
+    idx = np.argmin(dists)
+    shared = points[idx]
+    others = np.delete(points, idx, axis=0)
+    p4 = others[0] + others[1] - shared
+    return np.vstack([points, p4])
 
-    # Detekcja planszy metodą OpenCV
-    chessboard_size = (7, 7)
-    ret, corners = cv2.findChessboardCorners(gray, chessboard_size, None)
+def detect_chessboard_corners(img: np.ndarray):
+    results = model.predict(source=img, conf=0.3, save=False)[0]
+    corners = []
 
-    if ret:
-        cv2.drawChessboardCorners(frame, chessboard_size, corners, ret)
-        return True, corners
-    return False, None
+    for box in results.boxes.xyxy:
+        x1, y1, x2, y2 = box[:4]
+        cx, cy = (x1 + x2) / 2, (y1 + y2) / 2
+        corners.append([cx, cy])
 
-def detect_chessboard_from_camera():
-    """ Główna pętla wykrywania szachownicy i śledzenia ruchów """
-    cap = cv2.VideoCapture(0)
-    previous_piece_positions = {}
+    corners = np.array(corners)
 
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
+    if len(corners) == 3:
+        corners = complete_rectangle(corners)
 
-        detected, corners = detect_chessboard(frame)
-        if detected:
-            warped = apply_perspective_transform(frame, corners)
-            warped, squares = split_chessboard_into_squares(warped)
+    if len(corners) != 4:
+        return False, corners
 
-            cv2.imshow("Warped Chessboard", warped)
-
-        cv2.imshow("Chessboard Detection", frame)
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-    cap.release()
-    cv2.destroyAllWindows()
+    return True, corners
