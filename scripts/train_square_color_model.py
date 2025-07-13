@@ -54,7 +54,7 @@ def train():
 
     X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
-    model = RandomForestClassifier(n_estimators=300, max_depth=None, random_state=42, n_jobs=-1)
+    model = RandomForestClassifier(n_estimators=500, max_depth=None, random_state=42, n_jobs=-1)
     model.fit(X_tr, y_tr)
 
     print("Walidacja (20% split):\n",

@@ -12,11 +12,15 @@ def _parse_moves(moves_path=MOVES_TXT):
     moves = []
     with open(moves_path, encoding="utf-8") as f:
         for line in f:
-            m = re.search(r":\s*([a-h][1-8]-?[a-h][1-8])", line)
+            m = re.search(r":\s*([a-h][1-8]-?[a-h][1-8][qQrRnNbB]?)", line)
             if not m:
                 continue
-            uci = m.group(1).replace("-", "")
-            if not moves or moves[-1] != uci:
+            uci = m.group(1).replace("-", "")        
+
+            if moves and moves[-1][:4] == uci[:4]:      
+                if len(uci) > len(moves[-1]):
+                    moves[-1] = uci
+            else:
                 moves.append(uci)
     return moves
 

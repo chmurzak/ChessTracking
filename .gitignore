@@ -1,4 +1,5 @@
 dataset/
+dataset_auto/
 debug/
 models/
 runs/
