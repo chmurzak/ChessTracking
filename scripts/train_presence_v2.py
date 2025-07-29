@@ -1,10 +1,3 @@
-# scripts/train_presence_v2.py
-# -*- coding: utf-8 -*-
-"""
-Baseline CNN · empty(0) / piece(1) · tile 64×64 px
-CPU-friendly  (≈4-5 s/epoka na CPU) — model ≈ 27 kB
-"""
-
 import argparse, random, cv2, os, numpy as np, albumentations as A, tensorflow as tf
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix

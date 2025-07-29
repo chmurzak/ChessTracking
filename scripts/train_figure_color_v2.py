@@ -22,7 +22,6 @@ AUG_TRAIN = A.Compose([
 ])
 
 def iter_paths():
-    """yield Path, label  (white = 1,  black = 0)"""
     for sq in ("white_squares", "black_squares"):
         for sub in (DATA_ROOT / sq).iterdir():
             if not sub.is_dir():

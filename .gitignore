@@ -3,6 +3,7 @@ dataset_auto/
 debug/
 models/
 runs/
+live_pool/
 
 __pycache__/
 *.pyc
