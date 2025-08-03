@@ -101,4 +101,4 @@ if __name__ == "__main__":
 
     MODEL_OUT.parent.mkdir(parents=True, exist_ok=True)
     model.save(MODEL_OUT)
-    print("✓ zapisano", MODEL_OUT)
+    print("Zapisano", MODEL_OUT)
