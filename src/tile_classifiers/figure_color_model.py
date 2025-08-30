@@ -2,10 +2,12 @@ import cv2, numpy as np
 from tensorflow.keras.applications.efficientnet_v2 import preprocess_input
 from tensorflow.keras.models import load_model
 
-MODEL_PATH = "models/figure_color/effnetv2_b0/model.h5"
+MODEL_PATH = "models/piece_color/effnet_b0/model.h5"
+
 model = load_model(MODEL_PATH, compile=False)   
 
 IMG_SIZE = 64
+THRESH   = 0.90      # Najlepsze F1
 
 def preprocess_tile_for_figure_color(tile: np.ndarray) -> np.ndarray:
     rgb  = cv2.cvtColor(tile, cv2.COLOR_BGR2RGB)
@@ -15,4 +17,4 @@ def preprocess_tile_for_figure_color(tile: np.ndarray) -> np.ndarray:
 
 def classify_figure_color(tile: np.ndarray) -> str:
     prob = model.predict(preprocess_tile_for_figure_color(tile), verbose=0)[0, 0]
-    return "white" if prob > 0.5 else "black"
+    return "white" if prob > THRESH else "black"

@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import os
 
-model = YOLO("models/best_corner_model.pt")
+model = YOLO("models/corner/best_corner_model.pt")
 
 def complete_rectangle(points):
     if len(points) != 3:

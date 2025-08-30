@@ -34,7 +34,7 @@ def detect_orientation_direct(tiles: list):
 
 def map_tiles_using_corners(corner_map: dict[str, int]) -> dict[int, str]:
     """
-    Buduje mapping index→'a1'...'h8' dla **dowolnego obrotu 0/90/180/270 °**.
+    Buduje mapping index 'a1'...'h8' dla **dowolnego obrotu 0/90/180/270 °**.
     """
     a1 = corner_map["A1"]
     h1 = corner_map["H1"]

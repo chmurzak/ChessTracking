@@ -5,15 +5,13 @@ import tensorflow as tf
 MODEL_PATH = "models/presence/presence_lightcnn.h5"
 model = tf.keras.models.load_model(MODEL_PATH)
 
-def preprocess_tile_for_presence(tile):
-    gray = cv2.cvtColor(tile, cv2.COLOR_BGR2GRAY)
-    edges = cv2.Canny(gray, 50, 150)
-    edges_rgb = cv2.merge([edges] * 3) 
-    resized = cv2.resize(edges_rgb, (64, 64))
-    normalized = resized.astype("float32") / 255.0
-    return np.expand_dims(normalized, axis=0)
+IMG_SIZE = (64, 64)
 
-def classify_presence(tile):
-    input_data = preprocess_tile_for_presence(tile)
-    prediction = model.predict(input_data, verbose=0)[0][0]
-    return "occupied" if prediction > 0.5 else "empty"
+def preprocess_tile_for_presence(tile: np.ndarray) -> np.ndarray:
+    lab = cv2.cvtColor(tile, cv2.COLOR_BGR2LAB)
+    lab = cv2.resize(lab, IMG_SIZE).astype("float32") / 255.0
+    return np.expand_dims(lab, axis=0)  
+
+def classify_presence(tile: np.ndarray) -> str:
+    prob = model.predict(preprocess_tile_for_presence(tile), verbose=0)[0, 0]
+    return "occupied" if prob > 0.5 else "empty"

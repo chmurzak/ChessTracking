@@ -17,7 +17,7 @@ from pgn_writer              import update_pgn
 DUMP_ROOT            = "dataset_auto/pieces"
 START_POSITION_PATH  = "start_position.json"
 GAME_STATES_DIR      = "debug/game_states"
-CAM_URL              = "http://192.168.8.103:8080/video"
+CAM_URL              = "http://192.168.8.102:8080/video"
 
 
 def main() -> None:

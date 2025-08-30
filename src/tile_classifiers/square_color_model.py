@@ -2,27 +2,35 @@ import cv2
 import joblib
 import numpy as np
 
-MODEL_PATH = "models/square_color_model.pkl"
+MODEL_PATH = "models/square_color/model.pkl"
 model = joblib.load(MODEL_PATH)
 
 def extract_features(img):
-    if len(img.shape) == 2 or (len(img.shape) == 3 and img.shape[2] == 1):
+    
+    if img is None:
+        raise ValueError("extract_features: input image is None")
+    if img.ndim == 2 or (img.ndim == 3 and img.shape[2] == 1):
         img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
-    if img is None or len(img.shape) != 3 or img.shape[2] != 3:
-        raise ValueError(f"extract_features: input image has wrong shape: {None if img is None else img.shape}")
 
-    lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
-    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    lab  = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+    hsv  = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-    l_mean, l_std = lab[..., 0].mean(), lab[..., 0].std()
-    h_mean        = hsv[..., 0].mean()
-    s_mean, s_std = hsv[..., 1].mean(), hsv[..., 1].std()
-    v_mean, v_std = hsv[..., 2].mean(), hsv[..., 2].std()
-    dark_ratio    = np.sum(gray < 80) / gray.size
+    L = lab[..., 0].astype(np.float32)
+    H = hsv[..., 0].astype(np.float32)
+    S = hsv[..., 1].astype(np.float32)
+    V = hsv[..., 2].astype(np.float32)
 
-    return [l_mean, l_std, h_mean, s_mean, s_std, v_mean, v_std, dark_ratio]
+    bright_ratio = float((V > 200).sum()) / V.size
+    p25, p75     = np.percentile(L, [25, 75])
+    L_IQR        = float(p75 - p25)
 
+    return [
+        float(L.mean()), float(L.std()),
+        float(H.mean()),
+        float(S.mean()), float(S.std()),
+        float(V.mean()), float(V.std()),
+        bright_ratio, L_IQR
+    ]
 
 def classify_square_color(tile):
     feats = np.array(extract_features(tile)).reshape(1, -1)
