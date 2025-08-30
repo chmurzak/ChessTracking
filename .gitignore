@@ -14,9 +14,6 @@ __pycache__/
 *.pyc
 
 *.log
-*.pth
-*.pt
-*.pkl
 *.lnk
 
 venv/
