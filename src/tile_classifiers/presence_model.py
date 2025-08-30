@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import tensorflow as tf
 
-MODEL_PATH = "models/presence_model.h5"
+MODEL_PATH = "models/presence/presence_lightcnn.h5"
 model = tf.keras.models.load_model(MODEL_PATH)
 
 def preprocess_tile_for_presence(tile):

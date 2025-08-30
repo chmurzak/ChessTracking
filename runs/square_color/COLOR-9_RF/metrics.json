@@ -1,0 +1,61 @@
+{
+  "feat_set": "COLOR-9",
+  "classifier": "RF",
+  "params": {
+    "n_estimators": 200,
+    "max_depth": null,
+    "class_weight": "balanced"
+  },
+  "seed": 43,
+  "n_test": 3463,
+  "accuracy": 0.997112330349408,
+  "f1": 0.9971031286210892,
+  "precision": 0.9982598607888631,
+  "recall": 0.9959490740740741,
+  "latency_ms": {
+    "mean": 31.25931209932738,
+    "median": 27.8744999995979,
+    "p95": 43.008109998845605
+  },
+  "confusion_matrix": {
+    "labels": [
+      "black",
+      "white"
+    ],
+    "counts": [
+      [
+        1732,
+        3
+      ],
+      [
+        7,
+        1721
+      ]
+    ],
+    "normalized": [
+      [
+        0.998271,
+        0.001729
+      ],
+      [
+        0.004051,
+        0.995949
+      ]
+    ]
+  },
+  "per_class": {
+    "black": {
+      "precision": 0.9959746981023577,
+      "recall": 0.9982708933717579,
+      "f1": 0.9971214738054116,
+      "support": 1735
+    },
+    "white": {
+      "precision": 0.9982598607888631,
+      "recall": 0.9959490740740741,
+      "f1": 0.9971031286210892,
+      "support": 1728
+    }
+  },
+  "train_time_s": 1.0157836000016687
+}

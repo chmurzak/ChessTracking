@@ -1,0 +1,61 @@
+{
+  "feat_set": "BASIC-3",
+  "classifier": "RF",
+  "params": {
+    "n_estimators": 200,
+    "max_depth": null,
+    "class_weight": "balanced"
+  },
+  "seed": 43,
+  "n_test": 3463,
+  "accuracy": 0.9890268553277505,
+  "f1": 0.9889534883720931,
+  "precision": 0.9935747663551402,
+  "recall": 0.984375,
+  "latency_ms": {
+    "mean": 47.03933820385516,
+    "median": 43.75830000026326,
+    "p95": 74.49628999929699
+  },
+  "confusion_matrix": {
+    "labels": [
+      "black",
+      "white"
+    ],
+    "counts": [
+      [
+        1724,
+        11
+      ],
+      [
+        27,
+        1701
+      ]
+    ],
+    "normalized": [
+      [
+        0.99366,
+        0.00634
+      ],
+      [
+        0.015625,
+        0.984375
+      ]
+    ]
+  },
+  "per_class": {
+    "black": {
+      "precision": 0.9845802398629354,
+      "recall": 0.9936599423631124,
+      "f1": 0.9890992541594952,
+      "support": 1735
+    },
+    "white": {
+      "precision": 0.9935747663551402,
+      "recall": 0.984375,
+      "f1": 0.9889534883720931,
+      "support": 1728
+    }
+  },
+  "train_time_s": 0.5166384000003745
+}

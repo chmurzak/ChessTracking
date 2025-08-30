@@ -8,7 +8,7 @@ from tile_classifiers.presence_model import (
 )
 from tile_classifiers.figure_color_model import classify_figure_color
 
-SQUARE_COLOR_MODEL = joblib.load("models/square_color_model.pkl")
+SQUARE_COLOR_MODEL = joblib.load("models/square_color/model.pkl")
 
 
 def classify_square_color(tile):
@@ -24,7 +24,7 @@ def classify_tile_full(tile):
     presence_pred = PRESENCE_MODEL.predict(
         preprocess_tile_for_presence(tile), verbose=0
     )[0][0]
-    if presence_pred <= 0.6:
+    if presence_pred <= 0.5:
         return f"{square_color}_empty"
 
     figure_color = classify_figure_color(tile)

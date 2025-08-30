@@ -1,0 +1,23 @@
+{
+  "arch": "InceptionV3",
+  "img_size": 299,
+  "warmup": 32,
+  "runs": 512,
+  "batch": 1,
+  "api": "predict_batch1",
+  "include_preproc": false,
+  "device": "cpu",
+  "n_val_used": 837,
+  "data_dir": "C:\\Users\\burza\\ChessVision\\dataset\\pieces",
+  "model_path": "C:\\Users\\burza\\ChessVision\\models\\figure_type\\InceptionV3\\InceptionV3.ts",
+  "latency_batch1_ms": {
+    "api": "predict_batch1",
+    "include_preproc": false,
+    "device": "cpu",
+    "mean_ms": 246.58970156347095,
+    "median_ms": 247.62760000303388,
+    "p90_ms": 257.54455998539925,
+    "p99_ms": 266.98211600305513,
+    "n": 512
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "arch": "effb0_v1",
+  "seed": 42,
+  "epochs": 10,
+  "img_size": 64,
+  "val_accuracy": 0.978494623655914,
+  "confusion_matrix": [
+    [
+      123,
+      0,
+      0,
+      3
+    ],
+    [
+      0,
+      245,
+      3,
+      1
+    ],
+    [
+      0,
+      1,
+      232,
+      2
+    ],
+    [
+      1,
+      4,
+      3,
+      219
+    ]
+  ],
+venv) PS C:\Users\burza\ChessVision> python -m scripts.figure_type_detectors.effnet_b0_train_chess_piece_classifier
+Device: cpu
+4182 poprawnych obrazów
+[1/10] train  73.3% / val  90.6% (loss 0.7106/0.2595)
+[2/10] train  89.9% / val  96.7% (loss 0.2907/0.0972)
+[3/10] train  93.5% / val  96.4% (loss 0.1887/0.0900)
+[4/10] train  94.9% / val  97.0% (loss 0.1437/0.0818)
+[5/10] train  95.3% / val  97.3% (loss 0.1356/0.0978)
+[6/10] train  96.5% / val  98.0% (loss 0.1023/0.0591)
+[7/10] train  96.5% / val  97.3% (loss 0.1111/0.0886)
+[8/10] train  96.9% / val  98.4% (loss 0.0906/0.0560)
+[9/10] train  97.0% / val  97.8% (loss 0.0878/0.0630)
+[10/10] train  97.2% / val  97.8% (loss 0.0846/0.0635)
+VAL Accuracy (no bias): 0.9785
+Zapisano: models\effnetb0_confusion_matrix_nobias.png
+Latency (batch=1) [ms/img]: {'mean_ms': 37.08317363225433, 'median_ms': 41.496199992252514, 'p90_ms': 45.13412001542748, 'p99_ms': 53.1625469541177, 'n': 512}
+Model zapisany w models\efficientnetB0_promo_nobias.pth i models\efficientnetB0_promo_nobias.ts

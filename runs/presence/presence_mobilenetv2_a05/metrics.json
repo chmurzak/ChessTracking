@@ -1,0 +1,35 @@
+{
+  "model": "presence_mobilenetv2_a05",
+  "seed": 42,
+  "epochs": 8,
+  "batch": 64,
+  "dataset": {
+    "total": 17313,
+    "train": 13850,
+    "val": 3463,
+    "positives_train": 6980,
+    "negatives_train": 6870,
+    "positives_val": 1745,
+    "negatives_val": 1718
+  },
+  "metrics": {
+    "accuracy": 0.9982673982096448,
+    "f1": 0.9982788296041308,
+    "confusion_matrix": [
+      [
+        1717,
+        1
+      ],
+      [
+        5,
+        1740
+      ]
+    ]
+  },
+  "latency_ms_batch1": {
+    "mean": 149.95241562499473,
+    "median": 144.58984999509994,
+    "p95": 191.2332350104407
+  },
+  "notes": "Klasa dodatnia = occupied. Augment wsp\u00f3lny; kolor: rgb. MNv2: ImageNet, BN freeze, bias_init=0.016, 2-etapowy trening, resize\u2192128."
+}

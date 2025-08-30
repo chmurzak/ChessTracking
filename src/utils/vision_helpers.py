@@ -3,7 +3,7 @@ from torchvision import transforms
 from functools import lru_cache
 
 CLASS_NAMES = ["queen", "rook", "knight", "bishop"]
-MODEL_PATH  = "models/chess_piece_classifier.ts"
+MODEL_PATH  = "models/figure_type/efficentnetB0_promo.ts"
 QUEEN_BIAS  = 1.05         
 
 @lru_cache()                

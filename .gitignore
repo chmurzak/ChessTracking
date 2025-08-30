@@ -1,9 +1,14 @@
 dataset/
-dataset_auto/
 debug/
-models/
-runs/
-live_pool/
+scripts/
+
+runs/detect/geom_board_eval/largest/train
+runs/detect/geom_board_eval/largest/valid
+runs/detect/geom_board_eval/second/train
+runs/detect/geom_board_eval/second/valid
+
+runs/detect/hough_knn_eval/train
+runs/detect/hough_knn_eval/valid
 
 __pycache__/
 *.pyc

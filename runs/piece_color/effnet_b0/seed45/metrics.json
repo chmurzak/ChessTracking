@@ -1,0 +1,98 @@
+{
+  "arch": "effnet_b0",
+  "seed": 45,
+  "epochs": 5,
+  "metrics@0.5": {
+    "accuracy": 0.9948424068767908,
+    "f1": 0.9948717948717949,
+    "confusion_matrix": [
+      [
+        863,
+        5
+      ],
+      [
+        4,
+        873
+      ]
+    ],
+    "classification_report": {
+      "black": {
+        "precision": 0.9953863898500577,
+        "recall": 0.9942396313364056,
+        "f1-score": 0.9948126801152738,
+        "support": 868.0
+      },
+      "white": {
+        "precision": 0.9943052391799544,
+        "recall": 0.9954389965792474,
+        "f1-score": 0.9948717948717949,
+        "support": 877.0
+      },
+      "accuracy": 0.9948424068767908,
+      "macro avg": {
+        "precision": 0.9948458145150061,
+        "recall": 0.9948393139578264,
+        "f1-score": 0.9948422374935344,
+        "support": 1745.0
+      },
+      "weighted avg": {
+        "precision": 0.9948430264473753,
+        "recall": 0.9948424068767908,
+        "f1-score": 0.9948423899384652,
+        "support": 1745.0
+      }
+    }
+  },
+  "metrics@best_f1": {
+    "threshold": 0.5499999999999999,
+    "accuracy": 0.9959885386819485,
+    "f1": 0.9960068454078722,
+    "confusion_matrix": [
+      [
+        865,
+        3
+      ],
+      [
+        4,
+        873
+      ]
+    ],
+    "classification_report": {
+      "black": {
+        "precision": 0.9953970080552359,
+        "recall": 0.9965437788018433,
+        "f1-score": 0.9959700633275763,
+        "support": 868.0
+      },
+      "white": {
+        "precision": 0.9965753424657534,
+        "recall": 0.9954389965792474,
+        "f1-score": 0.9960068454078722,
+        "support": 877.0
+      },
+      "accuracy": 0.9959885386819485,
+      "macro avg": {
+        "precision": 0.9959861752604946,
+        "recall": 0.9959913876905453,
+        "f1-score": 0.9959884543677242,
+        "support": 1745.0
+      },
+      "weighted avg": {
+        "precision": 0.9959892139452209,
+        "recall": 0.9959885386819485,
+        "f1-score": 0.9959885492212265,
+        "support": 1745.0
+      }
+    }
+  },
+  "latency_batch1_ms": {
+    "mean_ms": 72.6504214852639,
+    "median_ms": 72.28605001000687,
+    "p90_ms": 77.38097999244928,
+    "p99_ms": 83.48334400739986,
+    "n": 512
+  },
+  "paths": {
+    "model_h5": "C:\\Users\\burza\\ChessVision\\models\\piece_color\\effnet_b0\\model.h5"
+  }
+}

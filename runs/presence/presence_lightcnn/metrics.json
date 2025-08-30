@@ -1,0 +1,37 @@
+{
+  "model": "presence_lightcnn",
+  "seed": 42,
+  "epochs": 25,
+  "batch": 64,
+  "dataset": {
+    "total": 17313,
+    "train": 13850,
+    "val": 3463,
+    "positives_train": 6980,
+    "negatives_train": 6870,
+    "positives_val": 1745,
+    "negatives_val": 1718,
+    "positives_all": 8725,
+    "negatives_all": 8588
+  },
+  "metrics": {
+    "accuracy": 0.9968235633843489,
+    "f1": 0.9968399885090491,
+    "confusion_matrix": [
+      [
+        1717,
+        1
+      ],
+      [
+        10,
+        1735
+      ]
+    ]
+  },
+  "latency_ms_batch1": {
+    "mean": 11.645157031210829,
+    "median": 11.467500007711351,
+    "p95": 14.797354993061163
+  },
+  "notes": "Klasa dodatnia = occupied (nie-empty). Augmentacje i split identyczne dla wszystkich modeli."
+}

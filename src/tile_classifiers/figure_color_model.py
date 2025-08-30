@@ -2,10 +2,10 @@ import cv2, numpy as np
 from tensorflow.keras.applications.efficientnet_v2 import preprocess_input
 from tensorflow.keras.models import load_model
 
-MODEL_PATH = "models/figure_color_v2.h5"
+MODEL_PATH = "models/figure_color/effnetv2_b0/model.h5"
 model = load_model(MODEL_PATH, compile=False)   
 
-IMG_SIZE = 96  
+IMG_SIZE = 64
 
 def preprocess_tile_for_figure_color(tile: np.ndarray) -> np.ndarray:
     rgb  = cv2.cvtColor(tile, cv2.COLOR_BGR2RGB)

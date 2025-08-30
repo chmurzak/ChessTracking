@@ -1,0 +1,37 @@
+{
+  "model": "presence_lightcnn_cbam",
+  "seed": 42,
+  "epochs": 25,
+  "batch": 64,
+  "dataset": {
+    "total": 17313,
+    "train": 13850,
+    "val": 3463,
+    "positives_train": 6980,
+    "negatives_train": 6870,
+    "positives_val": 1745,
+    "negatives_val": 1718,
+    "positives_all": 8725,
+    "negatives_all": 8588
+  },
+  "metrics": {
+    "accuracy": 0.9974010973144672,
+    "f1": 0.9974189848006882,
+    "confusion_matrix": [
+      [
+        1715,
+        3
+      ],
+      [
+        6,
+        1739
+      ]
+    ]
+  },
+  "latency_ms_batch1": {
+    "mean": 39.45619736317951,
+    "median": 39.556449999508914,
+    "p95": 49.797230002150165
+  },
+  "notes": "Klasa dodatnia = occupied (nie-empty). Augmentacje i split identyczne dla wszystkich modeli."
+}
