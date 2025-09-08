@@ -25,7 +25,7 @@ The goal of this project is to provide a **fast and low-cost backend** for gener
 
 - `src/` – main source code (Python + OpenCV + lightweight ML models).
 - `models/` – contains three pre-trained models for each classification/detection task.
-- `runs/` – logs of model training and evaluation ([examples here](https://github.com/chmurzak/ChessTracking/tree/main/runs)).
+- `runs/` – logs of model training and evaluation.
 - `start_position.json` – description of the initial chess position.
 - `requirements.txt` – Python dependencies.
 - `.gitignore`, `README.md` – auxiliary files.
