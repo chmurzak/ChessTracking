@@ -46,6 +46,19 @@ Tracks changes after each move using lightweight classifiers:
 
 This enables **near real-time move registration**.
 
+
+## 🎥 Demo Video
+
+Watch the system in action:
+
+[![ChessTracking Demo](https://img.youtube.com/vi/seMomKFrVfk/0.jpg)](https://youtu.be/seMomKFrVfk)
+
+This short demo shows the full ChessTracking pipeline in real conditions:
+- Video input from a smartphone via IP Webcam,
+- Automatic chessboard calibration (corner detection + orientation),
+- Real-time move detection and PGN generation,
+- Lightweight CPU processing for smooth operation.
+
 ---
 
 ## Notes
